@@ -1,6 +1,7 @@
 const pokemonList = document.getElementById('pokemonList')
 const loadMoreButton = document.getElementById('loadMoreButton')
 
+
 const maxRecords = 151
 const limit = 10;
 let offset = 0;
@@ -9,19 +10,41 @@ let offset = 0;
 function loadPokemonItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
         const newHtml = pokemons.map((pokemon) => `
-        <li class="pokemon ${pokemon.type}">
-            <span class="number">#${pokemon.number}</span>
-            <span class="name">${pokemon.name}</span>
-
+        <input type="checkbox" class="trigger-input" id="${pokemon.number}">
+        <div id="pokemon" class="pokemon ${pokemon.type}">
+        <label for="${pokemon.number}">
+                <span class="name">${pokemon.name}</span>
+                <span class="number">#${pokemon.number}</span>
+    
             <div class="detail">
-                <ol class="types">
-                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join(' ')}
-                </ol>
-
-                <img src="${pokemon.photo}"
+                    <ol class="types">
+                        ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join(' ')}
+                    </ol>
+                    <img src="${pokemon.photo}"
                      alt="${pokemon.name}">
             </div>
-        </li>
+            <section class="atributtes">
+            <dl class="attributes">
+      <dt>HP</dt>
+      <dd>${pokemon.hp}</dd>
+      <dt>Attack</dt>
+      <dd>${pokemon.attack}</dd>
+      <dt>Defense</dt>
+      <dd>${pokemon.defense}</dd>
+      <dt>Speed</dt>
+      <dd>${pokemon.speed}</dd>
+      <dt>Height</dt>
+      <dd>${pokemon.height}</dd>
+      <dt>Weight</dt>
+      <dd>${pokemon.weight}</dd>
+      <dt>Abilities</dt>
+      <dd>${pokemon.abilities}</dd>
+    </dl>
+           </section>
+                
+                </label>
+                
+        </div>                
     `).join('')
         pokemonList.innerHTML += newHtml
     })
@@ -40,9 +63,9 @@ loadMoreButton.addEventListener('click', () => {
 
         loadMoreButton.parentElement.removeChild(loadMoreButton)
     } else {
-        loadPokemonItens(offset,limit)
+        loadPokemonItens(offset, limit)
     }
-        
+
 })
 
 

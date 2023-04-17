@@ -1,9 +1,13 @@
 .pokemons {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1.5em 1.5em repeat(6, 1fr);
+    grid: auto-flow / 1fr;
     margin: 0;
     padding: 0;
     list-style: none;
+    box-sizing: border-box;
+    
 }
 
 .normal {
@@ -78,25 +82,85 @@
     background-color: #f9aec7;
 }
 
+
+
+.trigger-input {
+    display: none;
+}
+
+
+.pokemon .name::after {
+content: '+';
+float: right;
+transition: transform .3s ease;
+}
+
 .pokemon {
     display: flex;
     flex-direction: column;
-    margin: .5rem;
+    margin: 0.5rem;
     padding: 1rem;
     border-radius: 1rem;
+    cursor: pointer;
+    overflow:auto;
 }
+.attributes {
+	grid-template-columns: repeat(auto-fit, minmax(10ch, 1fr));	 
+    text-align: center;
+    grid-gap: 0.6em;
+    display:none;
+}
+
+dt {
+    font-size: .500rem;
+    text-align: center;
+    grid-column-start: 1;
+    color: #ffffff;
+    padding: .50rem;  
+    margin: .15rem 0;
+    filter: brightness(1.1);
+    cursor: pointer;
+    background-color: #4444445f;
+}
+
+dd {
+    font-size: .500rem;
+    grid-column-start: span 2;
+    color: white;
+    padding: .50rem;  
+    margin: .15rem 0;
+    text-align: center;
+    text-justify: auto;
+    cursor: pointer;
+    text-shadow: 1px 1px #1a1a1a54
+}
+
+.trigger-input:checked + .pokemon .name::after {
+    transform: rotate(45deg);
+}
+
+.trigger-input:checked + .pokemon {
+    grid-row-end: span 2;
+    grid-column-end: span 2;
+}
+.trigger-input:checked + .pokemon .attributes {
+    display: grid;
+}
+
 
 .pokemon .number {
     color: #000;
     opacity: .3;
     text-align: right;
     font-size: .625rem;
+    cursor: pointer;
 }
 
 .pokemon .name {
     text-transform: capitalize;
     color: #fff;
     margin-bottom: .25rem;
+    cursor: pointer;
 }
 
 .pokemon .detail {
@@ -104,12 +168,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .pokemon .detail .types {
     padding: 0;
     margin: 0;
     list-style: none;
+    cursor: pointer;
 }
 
 .pokemon .detail .types .type {
@@ -120,11 +186,13 @@
     border-radius: 1rem;
     filter: brightness(1.1);
     text-align: center;
+    cursor: pointer;
 }
 
 .pokemon .detail img {
     max-width: 100%;
     height: 70px;
+    cursor: pointer;
 }
 
 .pagination {
@@ -161,6 +229,6 @@
 
 @media screen and (min-width: 992px) {
     .pokemons {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
     }
 }
