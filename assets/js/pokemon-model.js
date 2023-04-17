@@ -11,5 +11,4 @@ class Pokemon {
     height;
     weight;
     abilities = [];
-    
 }
