@@ -6,4 +6,4 @@
 
 OBS: Ao clicar no pokemon é exibido mais atributos e detalhes.
 
-Link: [Pokedex]([https://link-url-here.org](https://josias1254.github.io/dio-Projeto-Pokedex/)https://josias1254.github.io/dio-Projeto-Pokedex/)
+Link: [Pokedex](https://josias1254.github.io/dio-Projeto-Pokedex/)
